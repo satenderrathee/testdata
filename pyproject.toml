@@ -1,0 +1,57 @@
+[tool.poetry]
+name = "datastacks"
+version = "0.2.1"
+description = ""
+authors = ["Andy Durkan <andy.durkan@ensono.com>"]
+readme = "README.md"
+
+packages = [
+    { include = "datastacks/datastacks" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+jsonschema = "^4.17.3"
+azure-identity = "^1.12.0"
+azure-mgmt-datafactory = "^3.1.0"
+azure-storage-file-datalake = "^12.11.0"
+click-loglevel = "^0.4.0.post1"
+colorlog = "^6.7.0"
+polling2 = "^0.5.0"
+jinja2 = "^3.1.2"
+pyyaml = "^6.0.1"
+pydantic = "^1.10.9"
+
+[tool.poetry.scripts]
+datastacks = "datastacks.datastacks.datastacks_cli:cli"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.2"
+behave = "^1.2.6"
+black = "^23.1.0"
+pre-commit = "^3.2.0"
+flake8 = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+    line-length = 120
+    target-version = ['py310']
+    exclude = '''
+    /(
+        \.git
+      | \.venv
+    )/
+    '''
+
+[tool.flake8]
+max-line-length = "120"
+exclude = ".venv,.git"
+
+[tool.pydocstyle]
+convention = "google"
+add-ignore = "D100,D101,D104"
+match = "(?!test_).*\\.py"
+match_dir = "^(?!(tests)).*"
